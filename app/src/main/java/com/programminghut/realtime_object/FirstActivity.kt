@@ -2,12 +2,8 @@ package com.programminghut.realtime_object
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.programminghut.realtime_object.databinding.ActivityFirstBinding
-import androidx.fragment.app.Fragment
-import com.example.yourapp.HomeFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class FirstActivity : AppCompatActivity() {
 
@@ -18,31 +14,12 @@ class FirstActivity : AppCompatActivity() {
         binding = ActivityFirstBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_home -> {
-                    val homeFragment = HomeFragment()
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, homeFragment)
-                        .commit()
-                    true
-                }
-                R.id.navigation_dashboard -> {
-                    Toast.makeText(this, "Dashboard clicked", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.navigation_notifications -> {
-                    Toast.makeText(this, "Notifications clicked", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                else -> false
-            }
+        binding.buttonStartDetection.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
 
-        // Set default selection
-        bottomNavigationView.selectedItemId = R.id.navigation_home
+
     }
 
 
